@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import aaa from './video-1.mp4'
 
@@ -6,19 +5,7 @@ const size = 50
 
 const manyMore = () => {
   const result = []
-  // const item = (
-  //   <video autoPlay loop controls id={`video1`}>
-  //     <source src={aaa} type="video/mp4" />
-  //       Your browser does not support the video tag.
-  //   </video>
-  // )
   for (let index = 0; index < size; index++) {
-    // result.push(
-    //   <video height={50} width={50} loop id={`video${index}`}>
-    //     <source src={aaa} type="video/mp4" />
-    //       Your browser does not support the video tag.
-    //   </video>
-    // )
     result.push(
       <video loop id={`video${index}`}>
         <source src={aaa} type="video/mp4" />
@@ -31,13 +18,19 @@ const manyMore = () => {
 
 const onPlayClick = () => {
   for (let index = 0; index < size; index++) {
-    document.querySelector(`#video${index}`).play()
+    const waitSec = Math.random() * 1000
+    setTimeout(() => {
+      const vid = document.getElementById(`video${index}`);
+      vid.play();
+      vid.volume = 0.1;
+    }, waitSec)
   }
 }
 
 const onPauseClick = () => {
   for (let index = 0; index < size; index++) {
-    document.querySelector(`#video${index}`).pause()
+    const vid = document.getElementById(`video${index}`);
+    vid.pause();
   }
 }
 
